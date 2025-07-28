@@ -19,10 +19,11 @@
                                                 <th>#</th>
                                                 <th>Enquiry Date</th>
                                                 <th>Name</th>
+                                                 <th>Applied For</th>
                                                 <th>Phone Number</th>
                                                 <th>Email</th>
                                                 <th>CV</th>
-                                                <th>Message</th>
+                                                <th>Address</th>
                                           
                                                 <th class="actions">Actions</th>
                                             </tr>
@@ -41,9 +42,10 @@
                                                         }
                                                         ?></td>
                                                     <td><?= h($career->name) ?></td>
+                                                    <td><?= h($career->job->title) ?></td>
                                                     <td><?= h($career->phone) ?></td>
                                                     <td><?= h($career->email) ?></td>
-                                                    <td><a href="<?php echo $this->Url->image("upload/career/$career->resume", ['pathPrefix' => '']) ?>" download><button class="btn"><i class="fa fa-download"></i> Download</button></a></td>
+                                                    <td><a href="<?php echo $this->Url->image("upload/allfile/$career->resume", ['pathPrefix' => '']) ?>" download><button class="btn"><i class="fa fa-download"></i> Download</button></a></td>
                                                     <td><?= h($career->message) ?></td>
                                                  
                                                     <td class="actions">

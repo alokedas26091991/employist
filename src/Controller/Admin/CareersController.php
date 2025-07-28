@@ -21,11 +21,13 @@ class CareersController extends AppController
      */
     public function index()
     {
-        $careers = $this->paginate(
-            $this->Careers->find()
-                ->where(['is_deleted' => 0])
-                ->order(['id' => 'DESC'])
-        );
+        $this->paginate = [
+            'contain' => ['Jobs'],
+            'conditions' => ['Careers.is_deleted' => 0],
+            'order' => ['Careers.id' => 'DESC']
+        ];
+
+        $careers = $this->paginate($this->Careers);
 
         $this->set(compact('careers'));
     }
@@ -41,7 +43,7 @@ class CareersController extends AppController
     public function view($id = null)
     {
         $career = $this->Careers->get($id, [
-            'contain' => [],
+            'contain' => ['Jobs'],
         ]);
 
         $this->set(compact('career'));
@@ -64,7 +66,8 @@ class CareersController extends AppController
             }
             $this->Flash->error(__('The career could not be saved. Please, try again.'));
         }
-        $this->set(compact('career'));
+        $jobs = $this->Careers->Jobs->find('list', ['limit' => 200])->all();
+        $this->set(compact('career', 'jobs'));
     }
 
     /**
@@ -88,7 +91,8 @@ class CareersController extends AppController
             }
             $this->Flash->error(__('The career could not be saved. Please, try again.'));
         }
-        $this->set(compact('career'));
+        $jobs = $this->Careers->Jobs->find('list', ['limit' => 200])->all();
+        $this->set(compact('career', 'jobs'));
     }
 
     /**

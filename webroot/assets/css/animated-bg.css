@@ -1,0 +1,142 @@
+/* Animated Background CSS */
+
+.hero_section {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.9); /* Fallback background */
+}
+
+/* Make text content stand out better */
+.hero_section .container-xl {
+    position: relative;
+    z-index: 2;
+}
+
+.hero_section h1 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.hero_section p {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.hero_section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/hero-banner.jpg'); /* Using an existing image from the project */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.4; /* Subtle background */
+    animation: backgroundAnimation 20s infinite alternate;
+}
+
+/* Animation for the background */
+@keyframes backgroundAnimation {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: scale(1.05) rotate(1deg);
+        filter: hue-rotate(5deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(0deg);
+        filter: hue-rotate(10deg);
+    }
+    75% {
+        transform: scale(1.05) rotate(-1deg);
+        filter: hue-rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+}
+
+/* Additional floating elements for more animation */
+.floating-element {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.4;
+    border-radius: 50%;
+    background-color: #FE2828; /* Using the theme color */
+    box-shadow: 0 0 30px 10px rgba(2, 174, 165, 0.5);
+    animation: float 6s infinite ease-in-out;
+}
+
+.floating-element:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    background-color: #FE2828;
+}
+
+.floating-element:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+    background-color: #ffa410;
+}
+
+.floating-element:nth-child(3) {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 30%;
+    animation-delay: 4s;
+    background-color: #FE2828;
+}
+
+.floating-element:nth-child(4) {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    left: 70%;
+    animation-delay: 6s;
+    background-color: rgba(255, 164, 16, 0.7);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.floating-element:nth-child(5) {
+    width: 60px;
+    height: 60px;
+    top: 70%;
+    left: 20%;
+    animation-delay: 8s;
+    background-color: rgba(2, 174, 165, 0.7);
+    border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-15px) translateX(15px) scale(1.1);
+        opacity: 0.35;
+    }
+    50% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.1;
+    }
+    75% {
+        transform: translateY(15px) translateX(-15px) scale(0.9);
+        opacity: 0.05;
+    }
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.1;
+    }
+}

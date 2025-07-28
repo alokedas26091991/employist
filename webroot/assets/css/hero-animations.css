@@ -1,0 +1,222 @@
+/* Hero Images Animation CSS */
+
+/* Base styling for all hero images */
+.center_h1ril img {
+    transition: all 0.6s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform-origin: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .center_h1ril img {
+        transition: all 0.4s ease-in-out; /* Faster transitions on mobile */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow on mobile */
+    }
+    
+    /* Adjust animation timing for mobile */
+    .hero-img[data-animation="slide-left"],
+    .hero-img[data-animation="slide-right"],
+    .hero-img[data-animation="slide-top"],
+    .hero-img[data-animation="slide-bottom"] {
+        animation-duration: 0.8s; /* Faster animations on mobile */
+    }
+}
+
+/* Hover effects for all hero images */
+.center_h1ril img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+/* Different hover effects based on data attributes */
+.hero-img[data-animation="slide-left"] {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.hero-img[data-animation="slide-right"] {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.hero-img[data-animation="slide-top"] {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.hero-img[data-animation="slide-bottom"] {
+    transform: scale(1.05) translateY(5px);
+}
+
+/* Individual animations for each hero image based on data attributes */
+
+/* Slide in from left with fade */
+.hero-img[data-animation="slide-left"] {
+    animation: slideInLeft 1.2s ease-out forwards;
+}
+
+/* Slide in from right with fade */
+.hero-img[data-animation="slide-right"] {
+    animation: slideInRight 1.2s ease-out 0.3s forwards;
+}
+
+/* Slide in from top with fade */
+.hero-img[data-animation="slide-top"] {
+    animation: slideInTop 1.2s ease-out 0.6s forwards;
+}
+
+/* Slide in from bottom with fade */
+.hero-img[data-animation="slide-bottom"] {
+    animation: slideInBottom 1.2s ease-out 0.9s forwards;
+}
+
+/* Define the animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Continuous subtle floating animation for all images */
+ .hero-img[data-animation="slide-left"],
+.hero-img[data-animation="slide-top"] {
+    animation: float1 3s infinite ease-in-out;
+}
+
+.hero-img[data-animation="slide-right"],
+.hero-img[data-animation="slide-bottom"] {
+    animation: float2 4s infinite ease-in-out;
+}
+
+@keyframes float1 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Add a subtle color shift on hover */
+.center_h1ril img {
+    filter: brightness(1.05) contrast(1.05);
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Different color effects for different images */
+.hero-img[data-animation="slide-left"] {
+    filter: brightness(1.05) contrast(1.05) hue-rotate(5deg);
+}
+
+.hero-img[data-animation="slide-right"] {
+    filter: brightness(1.05) contrast(1.05) saturate(1.1);
+}
+
+.hero-img[data-animation="slide-top"] {
+    filter: brightness(1.05) contrast(1.05) sepia(0.1);
+}
+
+.hero-img[data-animation="slide-bottom"] {
+    filter: brightness(1.05) contrast(1.05) drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+
+/* Add a transition effect when scrolling into view */
+.center_h1ri {
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pulse animation for click interaction */
+.pulse-animation {
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) !important;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Add 3D effect with perspective */
+.center_h1r {
+    perspective: 1000px;
+}
+
+.center_h1ril {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Smooth transition for all transformations */
+.hero-img {
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+}

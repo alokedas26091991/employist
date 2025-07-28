@@ -105,7 +105,7 @@
         <div class="row">
            <svg class="aaa">
               <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                 Welcome To Aryan Group Admin Panel
+                 Welcome To Employist Admin Panel
               </text>
            </svg>
 

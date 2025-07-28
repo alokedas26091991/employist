@@ -40,6 +40,10 @@ class CareersTable extends Table
         $this->setTable('careers');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->belongsTo('Jobs', [
+            'foreignKey' => 'job_id',
+        ]);
     }
 
     /**
@@ -56,43 +60,21 @@ class CareersTable extends Table
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
 
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
-
-        $validator
-            ->scalar('phone')
-            ->maxLength('phone', 255)
-            ->requirePresence('phone', 'create')
-            ->notEmptyString('phone');
-
-        $validator
-            ->scalar('resume')
-            ->requirePresence('resume', 'create')
-            ->notEmptyString('resume');
-
-        $validator
-            ->scalar('message')
-            ->requirePresence('message', 'create')
-            ->notEmptyString('message');
-
-        $validator
-            ->notEmptyString('status');
-
-        $validator
-            ->notEmptyString('is_deleted');
-
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmptyDateTime('created_at');
-
-        $validator
-            ->dateTime('updated_at')
-            ->requirePresence('updated_at', 'create')
-            ->notEmptyDateTime('updated_at');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn('job_id', 'Jobs'), ['errorField' => 'job_id']);
+
+        return $rules;
     }
 }

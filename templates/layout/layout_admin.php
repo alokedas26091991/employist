@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="1EKgFy0MVtcT7RbeNTLykDke83u1mRTdwLhAr9yyDPs" />
-    <title>The Aryan Group</title>
-    <link href="<?php echo $this->Url->image("assets/img/logo_ma1in.png", ['pathPrefix' => '']) ?>" rel="icon">
+    <title>EMPLOYIST ADMIN</title>
+    <link href="<?php echo $this->Url->image("assets/img/Employist Partnership Logo.png", ['pathPrefix' => '']) ?>" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">

@@ -51,56 +51,11 @@ class EnquiriesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('company_name')
-            ->maxLength('company_name', 255)
-            ->requirePresence('company_name', 'create')
-            ->notEmptyString('company_name');
-
-        $validator
             ->scalar('contact_person_name')
             ->maxLength('contact_person_name', 255)
             ->requirePresence('contact_person_name', 'create')
             ->notEmptyString('contact_person_name');
 
-        $validator
-            ->scalar('contact_person_phone')
-            ->maxLength('contact_person_phone', 255)
-            ->requirePresence('contact_person_phone', 'create')
-            ->notEmptyString('contact_person_phone');
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
-
-        $validator
-            ->scalar('purpose')
-            ->requirePresence('purpose', 'create')
-            ->notEmptyString('purpose');
-
-        $validator
-            ->scalar('message')
-            ->requirePresence('message', 'create')
-            ->notEmptyString('message');
-
-        $validator
-            ->boolean('status')
-            ->notEmptyString('status');
-
-        $validator
-            ->boolean('is_deleted')
-            ->notEmptyString('is_deleted');
-
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmptyDateTime('created_at');
-
-        $validator
-            ->dateTime('updated_at')
-            ->requirePresence('updated_at', 'create')
-            ->notEmptyDateTime('updated_at');
-
-        return $validator;
+              return $validator;
     }
 }

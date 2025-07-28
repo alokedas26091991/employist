@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
+ * @property int|null $job_id
  * @property string $email
  * @property string $phone
  * @property string $resume
@@ -32,6 +33,7 @@ class Career extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'job_id' => true,
         'email' => true,
         'phone' => true,
         'resume' => true,

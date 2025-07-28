@@ -24,7 +24,8 @@ use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Cake\I18n\FrozenTime;
-
+use Cake\Filesystem\Folder;
+ use Cake\Filesystem\File;
 /**
  * Static content controller
  *
@@ -42,9 +43,9 @@ class HomeController extends AppController
     public function index()
     {
         $pdfpagecontentTable = TableRegistry::getTableLocator()->get('StaticPages');
-        $pdfpagecontent1 = $pdfpagecontentTable->find()->where(['page_name' => 1,'section' => 1])->first();
-          $pdfpagecontent2 = $pdfpagecontentTable->find()->where(['page_name' => 1,'section' => 2])->first(); 
-        $this->set(compact('pdfpagecontent1','pdfpagecontent2'));
+        $pdfpagecontent1 = $pdfpagecontentTable->find()->where(['page_name' => 1, 'section' => 1])->first();
+        $pdfpagecontent2 = $pdfpagecontentTable->find()->where(['page_name' => 1, 'section' => 2])->first();
+        $this->set(compact('pdfpagecontent1', 'pdfpagecontent2'));
 
 
 
@@ -81,9 +82,59 @@ class HomeController extends AppController
 
         $this->set(compact('testimonial'));
     }
+
+
+    public function job()
+    {
+        $job = TableRegistry::getTableLocator()->get('Jobs');
+        $jobs = $job->find("all", [
+            "order" => ["id" => "asc"]
+        ])->where(['is_deleted' => "0", 'is_active' => 1]);
+        $this->set(compact('jobs'));
+    }
+    
+
+    public function submitCareer()
+    {
+        if ($this->request->is('post')) {
+            $careersTable = TableRegistry::getTableLocator()->get('Careers');
+            $career = $careersTable->newEmptyEntity();
+
+            $data = $this->request->getData();
+
+            // Handle file upload (resume)
+            $resume = $data['resume'];
+            if ($resume && $resume->getError() === UPLOAD_ERR_OK) {
+                $filename = time() . '_' . $resume->getClientFilename();
+                $targetPath = WWW_ROOT . 'upload' . DS . 'allfile' . DS;
+                $resume->moveTo($targetPath . $filename);
+                $data['resume'] = 'upload/allfile/' . $filename;
+            } else {
+                $data['resume'] = null;
+            }
+
+            $career = $careersTable->patchEntity($career, [
+                'job_id' => $data['job_id'],
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
+                'message' => $data['message'],
+                'resume' => $data['resume'],
+                'created_at' => date('Y-m-d H:i:s'),
+                 'updated_at' => date('Y-m-d H:i:s')
+            ]);
+
+            if ($careersTable->save($career)) {
+                return $this->redirect(['controller' => 'Home', 'action' => 'index', '?' => ['submitted' => 'true']]);
+            } else {
+                $this->Flash->error(__('There was an error submitting your application.'));
+            }
+        }
+
+        return $this->redirect($this->referer());
+    }
     public function about()
     {
-
         $branchObj = TableRegistry::getTableLocator()->get('Sliders');
         $page = $branchObj->find("all", [
             "order" => ["id" => "asc"]
@@ -97,12 +148,11 @@ class HomeController extends AppController
         $this->set(compact('testimonial'));
 
         $pdfpagecontentTable = TableRegistry::getTableLocator()->get('StaticPages');
-        $pdfpagecontent1 = $pdfpagecontentTable->find()->where(['page_name' => 2,'section' => 1])->first();
-        $pdfpagecontent2 = $pdfpagecontentTable->find()->where(['page_name' => 2,'section' => 2])->all();
-        $pdfpagecontent3 = $pdfpagecontentTable->find()->where(['page_name' => 2,'section' => 3])->all();
-        $this->set(compact('pdfpagecontent1','pdfpagecontent2','pdfpagecontent3'));
+        $pdfpagecontent1 = $pdfpagecontentTable->find()->where(['page_name' => 2, 'section' => 1])->first();
+        $pdfpagecontent2 = $pdfpagecontentTable->find()->where(['page_name' => 2, 'section' => 2])->all();
+        $pdfpagecontent3 = $pdfpagecontentTable->find()->where(['page_name' => 2, 'section' => 3])->all();
+        $this->set(compact('pdfpagecontent1', 'pdfpagecontent2', 'pdfpagecontent3'));
     }
-
     public function service()
     {
         $galleryTbl = TableRegistry::getTableLocator()->get('Galleries');
@@ -127,7 +177,6 @@ class HomeController extends AppController
         ])->where(['name' => "Services", 'is_deleted' => "0", 'is_active' => 1]);
         $this->set(compact('page'));
     }
-
     public function gallery()
     {
         $branchObj = TableRegistry::getTableLocator()->get('Galleries');
@@ -144,9 +193,6 @@ class HomeController extends AppController
         ])->where(['name' => "Gallery", 'is_deleted' => "0", 'is_active' => 1]);
         $this->set(compact('page'));
     }
-
-
-
     public function details($slug = null)
     {
 
@@ -158,9 +204,6 @@ class HomeController extends AppController
 
         $this->set(compact('images', 'gallery'));
     }
-
-
-
     public function promotion()
     {
         $branchObj = TableRegistry::getTableLocator()->get('Sliders');
@@ -169,7 +212,6 @@ class HomeController extends AppController
         ])->where(['name' => "Promotions", 'is_deleted' => "0", 'is_active' => 1]);
         $this->set(compact('page'));
     }
-
     public function signage()
     {
         $branchObj = TableRegistry::getTableLocator()->get('Sliders');
@@ -178,7 +220,6 @@ class HomeController extends AppController
         ])->where(['name' => "Signages", 'is_deleted' => "0", 'is_active' => 1]);
         $this->set(compact('page'));
     }
-
     public function event()
     {
         $branchObj = TableRegistry::getTableLocator()->get('Sliders');
@@ -198,63 +239,30 @@ class HomeController extends AppController
 
     public function contact()
     {
-        $socialTable = TableRegistry::getTableLocator()->get('Socials');
-        $social = $socialTable->find()->first();
-        $this->set(compact('social'));
+         $enquiriesTable = TableRegistry::getTableLocator()->get('Enquiries');
+    $contactForm = $enquiriesTable->newEmptyEntity();
 
-        $branchObj = TableRegistry::getTableLocator()->get('Sliders');
-        $page = $branchObj->find("all", [
-            "order" => ["id" => "asc"]
-        ])->where(['name' => "Contact Us", 'is_deleted' => "0", 'is_active' => 1]);
-        $this->set(compact('page'));
+    if ($this->request->is('post')) {
+        $data = $this->request->getData();
+        $contactForm = $enquiriesTable->patchEntity($contactForm, $data);
+        $contactForm->created_at = FrozenTime::now();
+        $contactForm->updated_at = FrozenTime::now();
 
-
-        if ($this->request->is('post')) {
-            if (isset($_POST['sub'])) {
-                $name = $this->request->getData('name');
-                $email = $this->request->getData('email');
-                $mobile = $this->request->getData('mobile');
-                $message = $this->request->getData('message');
-                $admin_email = 'support@febino.in';
-                $this->loadComponent('SendMail');
-                $this->SendMail->sendMail(8, $admin_email, ['name' => $name, 'email' => $email, 'mobile' => $mobile, 'message' => $message]);
-                $this->Flash->error(__('We have received your Enquiry'));
-            }
+        //echo $contactForm; die;
+        if ($enquiriesTable->save($contactForm)) {
+            return $this->redirect(['controller' => 'Home', 'action' => 'index', '?' => ['submitted' => 'true']]);
         }
+        $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
+    }
+    $this->set(compact('contactForm'));
     }
 
 
     public function enquiry()
-    {
-        $enquiriesTable = TableRegistry::getTableLocator()->get('Enquiries');
-        $contactForm = $enquiriesTable->newEmptyEntity();
+{
+  
+}
 
-        if ($this->request->is('post')) {
-            $data = $this->request->getData();
-
-            // Optional validation: block submission if purpose is empty
-            if (empty($data['purpose'])) {
-                $this->Flash->error(__('Please select a valid purpose.'));
-                return $this->redirect($this->referer());
-            }
-
-            // Create entity with submitted data
-            $contactForm = $enquiriesTable->patchEntity($contactForm, $data);
-
-            // Set timestamps (if not handled by Table behavior)
-            $contactForm->created_at = FrozenTime::now();
-            $contactForm->updated_at = FrozenTime::now();
-
-            if ($enquiriesTable->save($contactForm)) {
-                $this->Flash->success(__('We have received your enquiry.'));
-                return $this->redirect(['controller' => 'Home', 'action' => 'index', '?' => ['submitted' => 'true']]);
-            }
-
-            $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
-        }
-
-        $this->set(compact('contactForm'));
-    }
 
 
     public function career()

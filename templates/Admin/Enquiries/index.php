@@ -16,11 +16,9 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Enquiry Date</th>
-                                                <th>Company Name</th>
                                                 <th>Contact Person</th>
                                                 <th>Phone Number</th>
                                                 <th>Email</th>
-                                                <th>Purpose</th>
                                                 <th>Message</th>
                                           
                                                 <th class="actions">Actions</th>
@@ -39,11 +37,9 @@
                                                         <?php
                                                         }
                                                         ?></td>
-                                                    <td><?= h($enquiry->company_name) ?></td>
                                                     <td><?= h($enquiry->contact_person_name) ?></td>
                                                     <td><?= h($enquiry->contact_person_phone) ?></td>
                                                     <td><?= h($enquiry->email) ?></td>
-                                                    <td><?= h($enquiry->purpose) ?></td>
                                                     <td><?= h($enquiry->message) ?></td>
                                                  
                                                     <td class="actions">

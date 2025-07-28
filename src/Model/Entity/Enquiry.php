@@ -9,11 +9,9 @@ use Cake\ORM\Entity;
  * Enquiry Entity
  *
  * @property int $id
- * @property string $company_name
  * @property string $contact_person_name
  * @property string $contact_person_phone
  * @property string $email
- * @property string $purpose
  * @property string $message
  * @property bool $status
  * @property bool $is_deleted
@@ -32,11 +30,9 @@ class Enquiry extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'company_name' => true,
         'contact_person_name' => true,
         'contact_person_phone' => true,
         'email' => true,
-        'purpose' => true,
         'message' => true,
         'status' => true,
         'is_deleted' => true,

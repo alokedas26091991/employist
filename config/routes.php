@@ -59,12 +59,7 @@ return function (RouteBuilder $routes): void {
 			 $builder->connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	 $builder->connect('/contact', ['controller' => 'Home', 'action' => 'contact', 'prefix' => FALSE]);
      $builder->connect('/about-us', ['controller' => 'Home', 'action' => 'about', 'prefix' => FALSE]);
-      $builder->connect('/service', ['controller' => 'Home', 'action' => 'service', 'prefix' => FALSE]);
-       $builder->connect('/gallery', ['controller' => 'Home', 'action' => 'gallery', 'prefix' => FALSE]);
-       $builder->connect('/promotions', ['controller' => 'Home', 'action' => 'promotion', 'prefix' => FALSE]);
-       $builder->connect('/signages', ['controller' => 'Home', 'action' => 'signage', 'prefix' => FALSE]);
-       $builder->connect('/events', ['controller' => 'Home', 'action' => 'event', 'prefix' => FALSE]);
-       $builder->connect('/exhibition-furniture-fixtures', ['controller' => 'Home', 'action' => 'exhibition', 'prefix' => FALSE]);
+     $builder->connect('/jobs', ['controller' => 'Home', 'action' => 'job', 'prefix' => FALSE]);
 	 $builder->connect('/privacy-policy', ['controller' => 'Home', 'action' => 'privacy', 'prefix' => FALSE]);
 	 $builder->connect('/refund-policy', ['controller' => 'Home', 'action' => 'refund', 'prefix' => FALSE]);
 	 $builder->connect('/terms-and-conditions', ['controller' => 'Home', 'action' => 'terms', 'prefix' => FALSE]);

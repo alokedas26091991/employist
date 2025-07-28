@@ -1,68 +1,101 @@
-<div class="dtry">
-    <ul class="vqa">
-        <li><a href="<?= $social->fb ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-        <li><a href="https://wa.me/<?= $social->whatsapp_no ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
-        <li><a href="<?= $social->instagram ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
-        <li><a href="<?= $social->youtube ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-    </ul>
-</div>
-<div class="cursor"></div>
-<div class="footer" style="background-image: url(/assets/images/footer-bg.jpg);">
+<section id="footer" class="p_3 bg_blueto">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-6">
-                <div class="f-logo">
-                    <a href="/"><img src="/assets/images/COLOR-LOGO.png"></a>
-                </div>
-                <div class="office">
-                    <div class="content">
-                        <div class="off-head">
-                            <h6>Follow us on</h6>
-                        </div>
+        <div class="row footer_1">
+            <div class="col-md-4">
+                <div class="footer_1i">
+                    <div class="mb-2 footer-logo">
+                        <a class="text-white text-uppercase" href="/">
+                            <img src="/assets/img/Employist Partnership Logo.png" alt="" height="60" />
+                        </a>
                     </div>
-                    <ul class="left-icon">
-                        <li><a href="<?= $social->fb ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="<?= $social->youtube ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-                        <li><a href="<?= $social->instagram ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <!-- 
+<div class="tagline-marquee-wrapper mb-4">
+  <div class="tagline-marquee">
+    <span>Your career, our responsibility</span>
+  </div>
+</div> -->
+                    <ul class="social-network social-circle mb-0">
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61577331016315" class="icoFacebook" title="Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@Employist365" class="icoTwitter" title="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/employist/" class="icoLinkedin" title="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/employist/" class="icoLinkedin" title="Linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://x.com/Employist365" class="icoLinkedin" title="Linkedin" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-6">
-                <div class="f-head">
-                    <h3>Quick Links</h3>
+            <div class="col-md-2">
+                <div class="footer_1i" style="display:none;">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <div class="row footer_3ism">
+                        <h6 class="col-md-12 col-6">
+                            <a class="footer-a" href="/"> Home</a>
+                        </h6>
+                        <h6 class="col-md-12 col-6 mt-2">
+                            <a class="footer-a" href="/about-us"> About us</a>
+                        </h6>
+                        <h6 class="col-md-12 col-6 mt-2">
+                            <a class="footer-a" href="/contact"> Contact us</a>
+                        </h6>
+                    </div>
                 </div>
-                <ul class="sdr">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about-us">About</a></li>
-                    <li><a href="/service">Services</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
             </div>
-            <div class="col-lg-4">
-                <div class="f-head">
-                    <h3>Get In Touch</h3>
+            <div class="col-md-2">
+                <div class="footer_1i">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <div class="row footer_3ism">
+                        <h6 class="col-md-12 col-6">
+                            <a class="footer-a" href="/"> Home</a>
+                        </h6>
+                        <h6 class="col-md-12 col-6 mt-2">
+                            <a class="footer-a" href="/about-us"> About us</a>
+                        </h6>
+                        <h6 class="col-md-12 col-6 mt-2">
+                            <a class="footer-a" href="/contact"> Contact us</a>
+                        </h6>
+                    </div>
                 </div>
-                <ul class="sdr">
-                    <li>
-                        <div class="icon"><i class="fa-solid fa-phone"></i></div>
-                        <div class="c-text"><a href="tel:<?= $social->phone ?>"><span class="rwn"><?= $social->phone ?></span></a></div>
-                    </li>
-                    <li>
-                        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                        <div class="c-text"><a href="mailto:<?= $social->email ?>"><span class="rwn"><?= $social->email ?></span></a></div>
-                    </li>
-                    <li>
-                        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-                        <div class="c-text"><span class="rwn"><?= $social->address ?></span></div>
-                    </li>
-                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="footer_1i">
+                    <h5 class="text-white mb-4 fw-bold">Contact Us</h5>
+                    <ul class="list-unstyled footer-contacts">
+                        <li>
+                            <a href="#" class="footer-a"><i class="fas fa-map-marker-alt"></i> 3/3 RAI SAHEB DEBENDRA NATH MUKHERJEE ROAD, HOWRAH, West Bengal, India - 711201.</a>
+                        </li>
+                        <li>
+                            <a href="tel:+918981921928" class="footer-a"><i class="fas fa-phone"></i> +91 8981921928</a>
+                        </li>
+                        <li>
+                            <a href="mailto:business@employist365.com" class="footer-a"><i class="fas fa-envelope"></i> business@employist365.com</a>
+                        </li>
+                        <li>
+                            <a href="mailto:employist365.com@gmail.com" class="footer-a"><i class="fas fa-envelope"></i> employist365.com@gmail.com</a>
+                        </li>
+                        <li>
+                            <a href="https://www.employist365.com" class="footer-a"><i class="fas fa-globe"></i>www.employist365.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row footer_b1 mt-3 pt-3">
+            <div class="col-md-12">
+                <div class="footer_b1l text-center">
+                    <p class="mb-0 text-white fs-6">
+                        © 2025 EMPLOYIST. All Rights Reserved
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="copy-right">
-    <div class="container">
-        <p>Copyright © 2025. All Rights Reserved</p>
-    </div>
-</div>
+</section>
